@@ -1,21 +1,16 @@
 public class SokobanGame{
-
-  private static int rows;
-  private static int columns;
-  private static boolean[][] occupiableMap;
-  private static int[][] goals;
-  private static int[][] boxes;
-  private static int[] playerPos;
-  private static int level;
+  private SokobanMap map;
+  private int level = 1;
+  private int rows = SokobanMapGenerator.getNrRows(level);
+  private int columns = SokobanMapGenerator.getNrColumns(level);
+  private boolean[][] occupiableMap = SokobanMapGenerator.getOccupiableMap(level);
+  private int[][] goals = SokobanMapGenerator.getGoals(level);
+  private int[][] boxes = SokobanMapGenerator.getBoxes(level);
+  private int[] playerPos = SokobanMapGenerator.getPlayer(level);
+  private int numberOfMoves;
 
   public SokobanGame(){
-  /*  this.boxes = SokobanMapGenerator.getBoxes(int level);
-    this.goals = getGoals(int level);
-    this.columns = getNrColumns(int level);
-    this.rows = getNrRows(int level);
-    this.occupiableMap = getOccupiableMap(int level);
-    this.playerPos = getPlayer(int level);
-    this.level = numberOfLevels(); */
+    map = new SokobanMap(this.rows, this.columns, this.occupiableMap, this.goals, this.boxes, this.playerPos);
   }
 
   public int getRows(){
@@ -31,57 +26,76 @@ public class SokobanGame{
   }
 
   public Direction getDirection(){
-    // TO DO
-    return Direction.DOWN;
+    Direction result = Direction.DOWN;
+    numberOfMoves = getNrMoves();
+    if (numberOfMoves != 0) {
+
+    }
+    return result;
   }
 
   public int getLevel(){
-
     return this.level;
   }
 
   public int getNrMoves(){
-    // TO DO
-    return 0;
+
+    int counter = 0;
+
+    return counter;
   }
 
   public int[][] getPositionBoxes(){
-    return this.boxes;
+    return SokobanMapGenerator.getBoxes(level);
   }
 
   public int[][] getPositionGoals(){
-    return this.goals;
+    return SokobanMapGenerator.getGoals(level);
   }
 
   public boolean isOccupiable(int i, int j){
-
-    return this.occupiableMap[i][j];
+    boolean[][] occupiableMap = new boolean[rows][columns];
+    occupiableMap = SokobanMapGenerator.getOccupiableMap(level);
+    return occupiableMap[i][j];
   }
 
   public void move(Direction dir){
-    // TO DO
+
   }
 
-  public boolean levelComplete(){
-    // TO DO
-    return true;
+  public boolean levelCompleted(){
+    boolean levelCompleted = true;
+    for (int i = 0;i < boxes.length ;i++ ) {
+      for (int j = 0;j < boxes[0].length ;j++ ) {
+        if (boxes[i][j] == goals[i][j]) {
+          levelCompleted = false;
+        }
+      }
+    }
+    return levelCompleted;
   }
 
   public boolean isTerminated(){
-    // TO DO
-    return true;
+    return levelCompleted() == true && level == SokobanMapGenerator.numberOfLevels();
   }
 
+
   public void loadNextLevel(){
-    // TO DO
+    if (level < SokobanMapGenerator.numberOfLevels()) {
+      level++;
+      map = new SokobanMap(this.rows, this.columns, this.occupiableMap, this.goals, this.boxes, this.playerPos);
+    }
   }
 
   public void restartLevel(){
-    // TO DO
+    map = new SokobanMap(this.rows, this.columns, this.occupiableMap, this.goals, this.boxes, this.playerPos);
   }
 
   public String toString(){
-    // TO DO
-    return " ";
+    int result = 0;
+    switch () {
+
+    }
+
   }
 }

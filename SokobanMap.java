@@ -1,10 +1,10 @@
 public class SokobanMap{
-  private final int rows;
-  private final int columns;
-  private final boolean[][] occupiableMap;
-  private final int[][] goals;
-  private final int[][] boxes;
-  private final int[] playerPos;
+  private int rows;
+  private int columns;
+  private boolean[][] occupiableMap;
+  private int[][] goals;
+  private int[][] boxes;
+  private int[] playerPos;
 
   public SokobanMap(int rows, int columns, boolean[][] occupiableMap, int[][] goals, int[][] boxes, int[] playerPos){
     this.rows = rows;
